@@ -5,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Connexion from './pages/Connexion';
 import Register from './pages/Register';
+import Verify from './pages/Verify';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route index element={<Home />} /> {/* Définition de la page d'accueil sur la page Home */}
       <Route path='/connexion' element={<Connexion />} /> {/* Définition de la page de connexion sur la page Connexion */}
       <Route path="/register" element={<Register />} /> {/* Définition de la page d'inscription sur la page Register */}
+      <Route path='/verify/:token' element={<Verify />} /> {/* Définition de la page de vérification sur la page Verify */}
     </Routes>
   );
 }

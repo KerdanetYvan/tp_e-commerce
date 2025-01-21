@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Register() {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState({ isActive: true });
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -14,6 +14,7 @@ export default function Register() {
         event.preventDefault();
         try {
             await axios.post('http://localhost:8000/api/user/signup', user);
+            document.getElementById('responseEnvoi').innerText = 'Email de vérification envoyé';
         } catch(e) {
             console.log(e.message);
         }
@@ -24,18 +25,10 @@ export default function Register() {
             <label htmlFor='firstname'>Firstname</label>
             <input
                 type='text'
-                name='firstname'
+                name='prenom'
                 id='firstname'
                 onChange={handleChange}
                 placeholder='Firstname'
-            />
-            <label htmlFor='nom'>Lastname</label>
-            <input
-                type='text'
-                name='lastname'
-                id='lastname'
-                onChange={handleChange}
-                placeholder='Lastname'
             />
             <label htmlFor='avatar'>Avatar</label>
             <input
@@ -61,7 +54,9 @@ export default function Register() {
                 onChange={handleChange}
                 placeholder='Votre mot de passe'
             />
+            <button>Register</button>
         </form>
         <Link to='/connexion'>Already registered ?</Link>
+        <p id='responseEnvoi'></p>
     </>)
 }
