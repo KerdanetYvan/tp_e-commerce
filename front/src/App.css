@@ -1,38 +1,244 @@
-.App {
-  text-align: center;
+/* ------------------- DASHBOARD ------------------- */
+/* ----------- Non connected user ----------- */
+.non-connected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 24px;
+  background-color: #d6d6d6;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.containerNoCo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #5f5f5f;
+  background-color: white;
+}
+
+.containerNoCo h1 {
+  font-size: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.containerNoCo .button {
+  font-size: 20px;
+  display: block;
+  padding: 5px 15px;
+  border-radius: 5px;
   color: white;
+  background-color: rgb(82, 82, 184);
+  text-decoration: none;
+}
+/* ----------- Non connected user ----------- */
+
+/* ----------- Connected wrong user ----------- */
+.wrong-role {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 24px;
+  background-color: #d6d6d6;
 }
 
-.App-link {
-  color: #61dafb;
+.containerWrRo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #5f5f5f;
+  background-color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.containerWrRo h1 {
+  font-size: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.containerWrRo .button {
+  font-size: 20px;
+  display: block;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(82, 82, 184);
+  text-decoration: none;
+}
+/* ----------- Connected wrong user ----------- */
+
+/* ----------- Connected admin user ----------- */
+.containerTitleDa {
+  margin: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #5f5f5f;
+  width: fit-content;
+  height: 50px;
+}
+
+.containerTitleDa img {
+  height: 50px;
+  width: auto;
+}
+
+.tablesDa {
+  margin-left: 60px;
+}
+
+.buttonDa {
+  font-size: 20px;
+  padding: 5px 15px;
+  background-color: white;
+  border: none;
+  box-shadow: 0 -2px 2px #a1a1a1;
+}
+
+.leftBu {
+  border-top-left-radius: 10px;
+}
+
+.rightBu {
+  border-top-right-radius: 10px;
+}
+
+/* ---- Tableaux ---- */
+.table {
+  margin-inline: 30px;
+  width: calc(100% - 60px);
+  border-radius: 20px;
+  box-shadow: 0 0 10px #5f5f5f;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.table .img {
+  height: 50px;
+  width: auto;
+}
+
+/* ------------------- CONNEXION ------------------- */
+.connexion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 24px;
+  background-color: #d6d6d6;
+}
+
+.containerCo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #5f5f5f;
+  background-color: white;
+}
+
+.titleCo {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+/* ----------- SingUp ----------- */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.form-area {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-area input {
+  width: 300px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: inset 0 0 5px #5f5f5f;
+}
+
+.form button {
+  align-self: flex-end;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(82, 82, 184);
+  border: none;
+  font-size: 20px;
+}
+
+.form button:hover {
+  background-color: rgb(60, 60, 134);
+}
+/* ----------- SingUp ----------- */
+
+.linkNotRe {
+  font-size: 16px;
+  font-style: italic;
+  color: rgb(82, 82, 184);
+  text-decoration: none;
+}
+
+/* ------------------- VERIFY ------------------- */
+.verify {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 24px;
+  background-color: #d6d6d6;
+}
+
+.containerVe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #5f5f5f;
+  background-color: white;
+}
+
+.containerVe h1 {
+  font-size: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.containerVe .button {
+  font-size: 20px;
+  display: block;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(82, 82, 184);
+  text-decoration: none;
 }

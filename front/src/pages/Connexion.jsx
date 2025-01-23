@@ -3,9 +3,11 @@ import SignUp from '../components/SignUp';
 import { Link } from 'react-router-dom';
 
 export default function Connexion() {
-  return (<>
-        <div>Connexion</div>
+  return (<div className='connexion'>
+    <div className='containerCo'>
+        <div className='titleCo'>Connexion</div>
         <SignUp />
-        <Link to="/register">Not registered ?</Link>
-    </>)
+        <Link to="/register" className='linkNotRe'>Not registered ?</Link>
+    </div>
+  </div>)
 }
