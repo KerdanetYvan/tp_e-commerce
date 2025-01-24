@@ -72,7 +72,7 @@ export default function Detail() {
   }
 
   const handleAddToCart = () => {
-    alert(`Ajouté ${quantity} x ${product.name} au panier.`);
+    alert(`Vous avez ajouté ${quantity} ${product.name} au panier.`);
   };
 
   const handleSubmitReview = () => {

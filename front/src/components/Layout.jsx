@@ -11,3 +11,4 @@ export default function Layout({ children }) {
     </div>
   );
 }
+// Le layout permet d'afficher le header et le footer sur toutes les pages 

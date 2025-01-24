@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Pour créer des liens entre les pages
 import Layout from '../components/Layout';
-import '../styles/Home.css'; // Fichier CSS pour le style
+import '../styles/Home.css';
 
 export default function Home() {
   return (
@@ -77,6 +77,7 @@ export default function Home() {
 
 
         {/* Advice Section */}
+        {/* cette section va pas rester comme ça, soit j'enlenve soit ça affiche les avis des articles jsp */}
         <section className="advice">
           <h2>Votre avis compte</h2>
           <div className="advice-grid">
