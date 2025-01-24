@@ -1,0 +1,183 @@
+/* Global Style */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f4f0; /* Beige clair */
+    color: #333; /* Texte sombre */
+    line-height: 1.6;
+  }
+  
+  .header {
+    width: 100%;
+  }
+  
+  /* Hero Section */
+  .header {
+    background-color: #e8dfd7; /* Beige légèrement plus foncé */
+    padding: 50px 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #4b4033; /* Marron doux */
+  }
+  
+  
+  /* Featured Products */
+  .products {
+    padding: 40px 20px;
+    background-color: #faf8f6;
+  }
+  
+  .products h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4b4033;
+  }
+  
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Toujours 3 colonnes */
+    gap: 20px;
+  }
+  
+  .product-card {
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  .image-container {
+    position: relative;
+    height: auto;
+    width: auto;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+  }
+  
+  .image-container:hover img {
+    transform: scale(1.1);
+  }
+  
+  .product-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    transition: background 0.3s ease;
+  }
+  
+  .product-info .btn-primary {
+    background-color: #ffffffc6;
+    color: #4b4033;
+    padding: 5px 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .product-info .btn-primary:hover {
+    background-color: #ffffff;
+  }
+  
+  
+  /* advice Section */
+  .advice {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #f4ece7;
+  }
+  
+  .advice h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #4b4033;
+  }
+  .advice p {
+    font-style: italic;
+  }
+  
+  .advice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .advice-card {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    color: #333;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  }
+  
+  .advice-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .advice-card h4 {
+    margin-top: 15px;
+    color: #6e645c;
+    font-weight: normal;
+  }
+  
+  
+  /* Footer */
+.footer {
+  position: relative;
+  height: 300px; /* Ajuste la hauteur selon tes besoins */
+  color: #fff; /* Couleur blanche pour contraster avec le fond sombre */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.footer-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  filter: grayscale(0.5) brightness(0.7); /* Applique le filtre gris */
+}
+
+.footer-overlay {
+  position: relative;
+  z-index: 2; /* Place le contenu au-dessus de l'image */
+}
+
+.footer-links {
+  margin-top: 10px;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  color: #e0e0e0; /* Couleur pour les liens */
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
