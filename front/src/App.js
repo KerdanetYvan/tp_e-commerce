@@ -7,6 +7,7 @@ import Detail from './pages/Detail';
 import Connexion from './pages/Connexion';
 import Register from './pages/Register';
 import Verify from './pages/Verify';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -16,8 +17,6 @@ function App() {
       <Route path='/connexion' element={<Connexion />} /> {/* Définition de la page de connexion sur la page Connexion */}
       <Route path="/register" element={<Register />} /> {/* Définition de la page d'inscription sur la page Register */}
       <Route path='/verify/:token' element={<Verify />} /> {/* Définition de la page de vérification sur la page Verify */}
-      <Route path="/" element={<Home />} />
-      <Route path="/detail/:id" element={<Detail />} />
     </Routes>
   );
 }

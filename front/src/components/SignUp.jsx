@@ -19,23 +19,27 @@ export default function SignUp() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email</label>
-            <input
-                type="email"
-                placeholder='Email'
-                name="email"
-                id="email"
-                onChange={handleChange}
-            />
-            <label htmlFor="password">Password</label>
-            <input
-                type="password"
-                placeholder='Password'
-                name="password"
-                id="password"
-                onChange={handleChange}
-            />
+        <form onSubmit={handleSubmit} className='form'>
+            <div className='form-area mail'>
+                <label htmlFor="email">Email</label>
+                <input
+                    type="email"
+                    placeholder='Email'
+                    name="email"
+                    id="email"
+                    onChange={handleChange}
+                />
+            </div>
+            <div className='form-area password'>
+                <label htmlFor="password">Password</label>
+                <input
+                    type="password"
+                    placeholder='Password'
+                    name="password"
+                    id="password"
+                    onChange={handleChange}
+                />
+            </div>
             <button>Log In</button>
         </form>
     )

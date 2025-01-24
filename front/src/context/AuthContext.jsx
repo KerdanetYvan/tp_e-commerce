@@ -12,7 +12,10 @@ export const AuthProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
     
     // Etat pour stocker les infos de l'user connecté
-    const [auth, setAuth] = useState(null);
+    const [auth, setAuth] = useState(() => {
+        const storedAuth = localStorage.getItem('auth');
+        return storedAuth ? JSON.parse(storedAuth) : null;
+    });
 
     // Navigate
     const navigate = useNavigate();
@@ -23,6 +26,8 @@ export const AuthProvider = ({ children }) => {
         try {
             //Envoie d'une requête POST à l'API avec les données du formulaire
             const { data, status } = await axios.post('http://localhost:8000/api/user/sign', dataForm);
+            console.log(data);
+            console.log(status);
 
             // Si la requête est un succès (status 200)
             if( status === 200 ){
@@ -44,8 +49,16 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const logout = () => {
+        // Supprime les données utilisateur du localStorage
+        localStorage.removeItem('auth');
+
+        // Mise à jour du state auth
+        setAuth(null);
+    }
+
     return (
-        <AuthContext.Provider value={{ login, auth, isLoading }}>
+        <AuthContext.Provider value={{ login, logout, auth, isLoading }}>
             {children}
         </AuthContext.Provider>
     )

@@ -14,7 +14,7 @@ export default function Register() {
         event.preventDefault();
         try {
             await axios.post('http://localhost:8000/api/user/signup', user);
-            document.getElementById('responseEnvoi').innerText = 'Email de vérification envoyé';
+            document.getElementById('responseEnvoi').innerText = 'Email de vérification envoyé, consultez votre boîte mail';
         } catch(e) {
             console.log(e.message);
         }
