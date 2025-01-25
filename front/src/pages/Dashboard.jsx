@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import CreateUser from '../components/CreateUser';
+import ModifieUser from '../components/ModifieUser';
 
 export default function Dashboard() {
     const { auth } = useContext(AuthContext);
-    console.log(auth);
     const [users, setUsers] = useState([]);
     const [articles, setArticles] = useState([]);
     const [activeTable, setActiveTable] = useState('users');
 
     const [createUser, setCreateUser] = useState(false);
-    // const [newUser, setNewUser] = useState({ isActive: true });
-    // const [responseUser, setResponseUser] = useState('');
+    const [modifieUser, setModifieUser] = useState(false);
+    const [id, setId] = useState('');
 
 
     useEffect(() => {
@@ -60,7 +60,7 @@ export default function Dashboard() {
                 </thead>
                 <tbody>
                     {users.map(user => (
-                    <tr key={user._id}>
+                    <tr key={user._id} sytle={{ backgroundColor: user.isVerified ? 'white' : 'lightgray' }}>
                         <td><img src={user.avatar} alt='avatar' className='img' /></td>
                         <td>{user.prenom}</td>
                         <td>{user.email}</td>
@@ -70,7 +70,10 @@ export default function Dashboard() {
                         <td>{user.createdAt}</td>
                         <td>{user.updatedAt}</td>
                         <td>
-                            <button>Modifier</button>
+                            <button onClick={() => {
+                                setModifieUser(true);
+                                setId(user._id);
+                            }}>Informations</button>
                             <button>Archiver</button>
                             <button disabled={['admin', 'superadmin'].includes(user.role?.toLowerCase()) && (auth.role?.toLowerCase() !== 'superadmin' || user.role?.toLowerCase() === 'superadmin')}>Supprimer</button>
                         </td>
@@ -157,7 +160,8 @@ export default function Dashboard() {
             {activeTable === 'users' && renderUsersTable()}
             {activeTable === 'articles' && renderArticlesTable()}
         </div>
-        {createUser && <CreateUser />}
+        {createUser && <CreateUser setCreateUser={setCreateUser} />}
+        {modifieUser && <ModifieUser id={id} setModifieUser={setModifieUser} />}
         <Link to='/'>Return to main page</Link>
     </div>);
 }
