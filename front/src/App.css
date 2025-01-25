@@ -6,7 +6,7 @@
   align-items: center;
   height: 100vh;
   font-size: 24px;
-  background-color: #d6d6d6;
+  background-color: #e8dfd7;
 }
 
 .containerNoCo {
@@ -17,7 +17,7 @@
   gap: 20px;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 0 10px #5f5f5f;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: white;
 }
 
@@ -45,7 +45,7 @@
   align-items: center;
   height: 100vh;
   font-size: 24px;
-  background-color: #d6d6d6;
+  background-color: #e8dfd7;
 }
 
 .containerWrRo {
@@ -56,7 +56,7 @@
   gap: 20px;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 0 10px #5f5f5f;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: white;
 }
 
@@ -85,7 +85,8 @@
   align-items: center;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 0 10px #5f5f5f;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
   width: fit-content;
   height: 50px;
 }
@@ -104,7 +105,7 @@
   padding: 5px 15px;
   background-color: white;
   border: none;
-  box-shadow: 0 -2px 2px #a1a1a1;
+  box-shadow: -2px -4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .leftBu {
@@ -120,7 +121,17 @@
   margin-inline: 30px;
   width: calc(100% - 60px);
   border-radius: 20px;
-  box-shadow: 0 0 10px #5f5f5f;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.tableau {
+  width: 100%;
+  border-radius: 20px;
+  background-color: white;
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -131,6 +142,71 @@
   width: auto;
 }
 
+.new {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new button {
+  font-size: 20px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+/* ----------- Création d'user ----------- */
+.fast-create-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.fast-create-user form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  margin: 0;
+}
+
+.fast-create-user h1 {
+  font-size: 32px;
+  margin: 0;
+  padding: 0;
+}
+
+.role-area {
+  align-self: flex-start;
+}
+
+.role-area select {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: inset 0 0 5px #5f5f5f;
+}
+
+.fast-create-user form button {
+  align-self: flex-end;
+  font-size: 20px;
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(82, 82, 184);
+  border: none;
+}
+
 /* ------------------- CONNEXION ------------------- */
 .connexion {
   display: flex;
@@ -138,7 +214,7 @@
   align-items: center;
   height: 100vh;
   font-size: 24px;
-  background-color: #d6d6d6;
+  background-color: #e8dfd7;
 }
 
 .containerCo {
@@ -212,7 +288,7 @@
   align-items: center;
   height: 100vh;
   font-size: 24px;
-  background-color: #d6d6d6;
+  background-color: #e8dfd7;
 }
 
 .containerVe {
@@ -241,4 +317,33 @@
   color: white;
   background-color: rgb(82, 82, 184);
   text-decoration: none;
+}
+
+/* ------------------- REGISTER ------------------- */
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 24px;
+  background-color: #e8dfd7;
+}
+
+.containerRe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #5f5f5f;
+  background-color: white;
+}
+
+.titleRe {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
 }

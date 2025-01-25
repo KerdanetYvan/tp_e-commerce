@@ -2,12 +2,19 @@ import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
+import CreateUser from '../components/CreateUser';
 
 export default function Dashboard() {
+    const { auth } = useContext(AuthContext);
+    console.log(auth);
     const [users, setUsers] = useState([]);
     const [articles, setArticles] = useState([]);
     const [activeTable, setActiveTable] = useState('users');
-    const { auth } = useContext(AuthContext);
+
+    const [createUser, setCreateUser] = useState(false);
+    // const [newUser, setNewUser] = useState({ isActive: true });
+    // const [responseUser, setResponseUser] = useState('');
+
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -38,17 +45,17 @@ export default function Dashboard() {
             return <div className='table'>Nous avons rencontré un problème...</div>;
         };
 
-        return (
-            <table className='table users'>
+        return (<div className='table'>
+            <table className='tableau users'>
                 <thead>
                     <tr>
-                    <th>Avatar</th>
-                    <th>Prénom</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Créé le</th>
-                    <th>Modifié le</th>
-                    <th>Actions</th>
+                        <th>Avatar</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Créé le</th>
+                        <th>Modifié le</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,26 +72,28 @@ export default function Dashboard() {
                         <td>
                             <button>Modifier</button>
                             <button>Archiver</button>
-                            <button disabled={['admin', 'superadmin'].includes(user.role?.toLowerCase()) && !['superadmin'].includes(auth.role?.toLowerCase())}>Supprimer</button>
+                            <button disabled={['admin', 'superadmin'].includes(user.role?.toLowerCase()) && (auth.role?.toLowerCase() !== 'superadmin' || user.role?.toLowerCase() === 'superadmin')}>Supprimer</button>
                         </td>
                     </tr>
                     ))}
-                    <tr>
-                    Create New ?
-                    </tr>
                 </tbody>
             </table>
-        );
-
+            <div className='new'>
+                <button onClick={() => setCreateUser(true)}>Ajoutez-en un</button>
+            </div>
+        </div>);
     };
 
     const renderArticlesTable = () => {
         if( articles.length === 0 ) {
-            return <div className='table'>Aucun articles trouvé</div>;
+            return <div className='table'>
+            <p>Aucun article trouvé</p>
+            <button>Ajoutez-en un</button>
+        </div>;
         };
 
-        return (
-            <table className='table articles'>
+        return (<div className='table'>
+            <table className='tableau articles'>
                 <thead>
                     <tr>
                         <th>Image</th>
@@ -108,8 +117,15 @@ export default function Dashboard() {
                     ))}
                 </tbody>
             </table>
-        );
+            <div className='new'>
+                <button>Ajoutez-en un</button>
+            </div>
+        </div>);
     };
+
+
+
+
 
     if( !auth ) {
         return <div className='non-connected'>
@@ -119,7 +135,7 @@ export default function Dashboard() {
             </div>
         </div>;
     }
-    if( auth && auth.role !== 'admin' && auth.role !== 'superadmin' ) {
+    if( auth && auth.role !== 'admin' && auth.role !== 'superAdmin' ) {
         return <div className='wrong-role'>
             <div className='containerWrRo'>
                 <h1>You are not authorized to access this page</h1>
@@ -127,8 +143,6 @@ export default function Dashboard() {
             </div>
         </div>
     }
-
-
     return (<div className='dashboard'>
         <div className='containerTitleDa'>
             <img src={auth.avatar} alt='avatar' />
@@ -143,6 +157,7 @@ export default function Dashboard() {
             {activeTable === 'users' && renderUsersTable()}
             {activeTable === 'articles' && renderArticlesTable()}
         </div>
+        {createUser && <CreateUser />}
         <Link to='/'>Return to main page</Link>
     </div>);
 }

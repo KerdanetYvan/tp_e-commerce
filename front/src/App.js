@@ -17,6 +17,8 @@ function App() {
       <Route path='/connexion' element={<Connexion />} /> {/* Définition de la page de connexion sur la page Connexion */}
       <Route path="/register" element={<Register />} /> {/* Définition de la page d'inscription sur la page Register */}
       <Route path='/verify/:token' element={<Verify />} /> {/* Définition de la page de vérification sur la page Verify */}
+      <Route path='/dashboard' element={<Dashboard />} /> {/* Définition de la page de dashboard sur la page Dashboard */}
+      <Route path='/detail/:id' element={<Detail />} /> {/* Définition de la page de détail sur la page Detail */}
     </Routes>
   );
 }
