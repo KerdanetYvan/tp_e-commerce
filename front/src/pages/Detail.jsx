@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom'; // Pour récupérer les paramètres de l'URL
 import Layout from '../components/Layout'; // Import du Layout
 import '../styles/Detail.css'; 
@@ -49,6 +49,14 @@ const products = [
 ];
 
 export default function Detail() {
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Quand on clique sur découvrir, la page détail s'ouvre en haut de la page
+    // Récupérer les avis du localStorage lors du chargement initial
+    const storedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
+    setReviews(storedReviews);
+  }, []);
+
   const { id } = useParams(); // Récupère l'ID du produit depuis l'URL
   const product = products.find((prod) => prod.id === id); // Trouve le produit correspondant
 
@@ -72,12 +80,30 @@ export default function Detail() {
   }
 
   const handleAddToCart = () => {
+    // Ajoute au panier ici
+    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    storedCart.push({ ...product, quantity });
+    localStorage.setItem('cart', JSON.stringify(storedCart));
     alert(`Vous avez ajouté ${quantity} ${product.name} au panier.`);
   };
 
   const handleSubmitReview = () => {
     if (review.trim() && name.trim() && rating > 0) {
-      setReviews([...reviews, { name, review, rating }]);
+      const newReview = {
+        name,
+        review,
+        rating,
+        date: new Date().toLocaleString(), // Ajouter la date et l'heure
+      };
+
+      // Ajouter l'avis à la liste existante et mettre à jour dans le state
+      const updatedReviews = [...reviews, newReview];
+      setReviews(updatedReviews);
+
+      // Sauvegarder les avis dans le localStorage
+      localStorage.setItem('reviews', JSON.stringify(updatedReviews));
+
+      // Réinitialiser les champs du formulaire
       setReview('');
       setName('');
       setRating(0);
@@ -111,6 +137,7 @@ export default function Detail() {
           </button>
         </div>
       </div>
+
       <div className="detail">
         {/* Rédiger un avis */}
         <div className="write-review">
@@ -143,6 +170,7 @@ export default function Detail() {
           </button>
         </div>
       </div>
+
       <div className="detail">
         {/* Lire les avis */}
         <div className="reviews">
@@ -155,6 +183,7 @@ export default function Detail() {
                     {'★'.repeat(rev.rating)}{'☆'.repeat(5 - rev.rating)}
                   </span>
                   <p>{rev.review}</p>
+                  <small>Publié le {rev.date}</small> {/* Affiche la date et l'heure */}
                 </li>
               ))}
             </ul>
@@ -162,7 +191,7 @@ export default function Detail() {
             <p>Aucun avis pour le moment. Soyez le premier à en rédiger un !</p>
           )}
         </div>
-      
+
         <Link to="/" className="btn-primary">
           Retour à l'accueil
         </Link>
