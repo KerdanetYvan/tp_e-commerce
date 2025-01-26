@@ -1,6 +1,8 @@
+import '../styles/Register.css';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Layout from '../components/Layout';
 
 export default function Register() {
     const [user, setUser] = useState({ isActive: true });
@@ -25,8 +27,9 @@ export default function Register() {
         }
     };
 
-    return (<div className='register'>
-        <form onSubmit={handleSubmit} className='form containerRe'>
+    return (<Layout>
+    <div className='register'>
+        <form onSubmit={handleSubmit} className='containerRe'>
             <h1 className='titleRe'>Register</h1>
             <div className='form-area'>
                 <label htmlFor='firstname'>Firstname</label>
@@ -72,5 +75,6 @@ export default function Register() {
             <Link to='/connexion' className='linkNotRe'>Already registered ?</Link>
             <p style={{ color: isGood ? 'green' : 'red'}}>{response}</p>
         </form>
-    </div>)
+    </div>
+    </Layout>);
 }
