@@ -34,7 +34,7 @@ export default function Header() {
         </button>
         <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
           <ul>
-            <li><Link to="/dashboard">Nos Produits</Link></li>
+            <li><Link to="/">Nos Produits</Link></li>
           </ul>
         </nav>
         <div className="logo">
