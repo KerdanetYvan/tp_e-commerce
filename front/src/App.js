@@ -8,6 +8,7 @@ import Connexion from './pages/Connexion';
 import Register from './pages/Register';
 import Verify from './pages/Verify';
 import Dashboard from './pages/Dashboard';
+import Cart from './pages/Cart'; // Import du panier
 
 function App() {
   return (
@@ -19,11 +20,9 @@ function App() {
       <Route path='/verify/:token' element={<Verify />} /> {/* Définition de la page de vérification sur la page Verify */}
       <Route path='/dashboard' element={<Dashboard />} /> {/* Définition de la page de dashboard sur la page Dashboard */}
       <Route path='/detail/:id' element={<Detail />} /> {/* Définition de la page de détail sur la page Detail */}
+      <Route path="/cart" element={<Cart />} /> {/* Nouvelle route pour le panier */}
     </Routes>
   );
 }
 
 export default App;
-
-
-

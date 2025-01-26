@@ -9,7 +9,6 @@ export default function Home() {
       <div className="home">
         {/*Products */}
         <section  className="products">
-          <h2>Nos Produits</h2>
           <div id="products" className="products-grid">
             <div className="product-card">
               <div className="image-container">
