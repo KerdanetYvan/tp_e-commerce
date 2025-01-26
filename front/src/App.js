@@ -9,6 +9,8 @@ import Register from './pages/Register';
 import Verify from './pages/Verify';
 import Dashboard from './pages/Dashboard';
 import Cart from './pages/Cart'; // Import du panier
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
 
 function App() {
   return (
@@ -20,7 +22,9 @@ function App() {
       <Route path='/verify/:token' element={<Verify />} /> {/* Définition de la page de vérification sur la page Verify */}
       <Route path='/dashboard' element={<Dashboard />} /> {/* Définition de la page de dashboard sur la page Dashboard */}
       <Route path='/detail/:id' element={<Detail />} /> {/* Définition de la page de détail sur la page Detail */}
-      <Route path="/cart" element={<Cart />} /> {/* Nouvelle route pour le panier */}
+      <Route path="/cart" element={<Cart />} /> {/* Définition de la page panier sur la page Cart */}
+      <Route path="/terms" element={<Terms />} /> {/* Définition de la page des conditions générales sur la page Terms */}
+      <Route path="/privacy" element={<Privacy />} /> {/* Définition de la page de politique de confidentialité sur la page Privacy */}
     </Routes>
   );
 }

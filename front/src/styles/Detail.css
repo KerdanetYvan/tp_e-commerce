@@ -48,21 +48,6 @@ body {
     margin-bottom: 30px;
   }
   
-  /* Bouton Retour */
-  .btn-primary {
-    background-color: #4b4033;
-    color: #fff;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 5px;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-  }
-  
-  .btn-primary:hover {
-    background-color: #3a3229;
-  }
   
   /* Produit non trouvé */
   .detail h2 {
@@ -71,37 +56,37 @@ body {
     margin-bottom: 20px;
   }
   /* Section Ajouter au panier */
-.add-to-cart {
-  margin: 20px 0;
-  text-align: center;
-}
-
-.add-to-cart label {
-  margin-right: 10px;
-  font-weight: bold;
-}
-
-.add-to-cart select {
-  padding: 5px;
-  margin-right: 10px;
-}
-
-/* Section Rédiger un avis */
-.write-review {
-  margin: 30px 0;
-}
-
-.write-review textarea {
-  width: 100%;
-  height: 100px;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-
-/* Section Rédiger un avis */
-.write-review {
+  .add-to-cart {
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  .add-to-cart label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .add-to-cart select {
+    padding: 5px;
+    margin-right: 10px;
+  }
+  
+  /* Section Rédiger un avis */
+  .write-review {
+    margin: 30px 0;
+  }
+  
+  .write-review textarea {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  /* Section Rédiger un avis */
+  .write-review {
     margin: 30px 0;
   }
   
@@ -160,13 +145,28 @@ body {
     margin-left: 10px;
   }
   
-
+  
+  /* Bouton Retour */
+  .btn-primary {
+    background-color: #4b4033;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    background-color: #3a3229;
+  }
   /* Responsive */
   @media (max-width: 768px) {
     .detail {
       padding: 15px;
     }
-  
+    
     .detail h1 {
       font-size: 1.8rem;
     }
