@@ -4,6 +4,8 @@ import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import CreateUser from '../components/CreateUser';
 import ModifieUser from '../components/ModifieUser';
+import DeleteUser from '../components/DeleteUser';
+import CreateArticle from '../components/CreateArticle';
 import Layout from '../components/Layout';
 
 export default function Dashboard() {
@@ -14,7 +16,10 @@ export default function Dashboard() {
 
     const [createUser, setCreateUser] = useState(false);
     const [modifieUser, setModifieUser] = useState(false);
-    const [id, setId] = useState('');
+    const [deleteUser, setDeleteUser] = useState(false);
+    const [idUser, setIdUser] = useState('');
+
+    const [createArticle, setCreateArticle] = useState(false);
 
 
     useEffect(() => {
@@ -77,10 +82,15 @@ export default function Dashboard() {
                         <td>
                             <button onClick={() => {
                                 setModifieUser(true);
-                                setId(user._id);
+                                setIdUser(user._id);
                             }}>Informations</button>
-                            <button>Archiver</button>
-                            <button disabled={['admin', 'superadmin'].includes(user.role?.toLowerCase()) && (auth.role?.toLowerCase() !== 'superadmin' || user.role?.toLowerCase() === 'superadmin')}>Supprimer</button>
+                            <button
+                                disabled={['admin', 'superadmin'].includes(user.role?.toLowerCase()) && (auth.role?.toLowerCase() !== 'superadmin' || user.role?.toLowerCase() === 'superadmin')}
+                                onClick={() => {
+                                    setDeleteUser(true);
+                                    setIdUser(user._id);
+                                }}
+                            >{user.isActive ? 'Archiver' : 'Re-activer'}</button>
                         </td>
                     </tr>
                     ))}
@@ -135,7 +145,7 @@ export default function Dashboard() {
                 </tbody>
             </table>
             <div className='new'>
-                <button>Ajoutez-en un</button>
+                <button onClick={() => setCreateArticle(true)}>Ajoutez-en un</button>
             </div>
         </div>);
     };
@@ -175,7 +185,9 @@ export default function Dashboard() {
             {activeTable === 'articles' && renderArticlesTable()}
         </div>
         {createUser && <CreateUser setCreateUser={setCreateUser} />}
-        {modifieUser && <ModifieUser id={id} setModifieUser={setModifieUser} />}
+        {modifieUser && <ModifieUser id={idUser} setModifieUser={setModifieUser} />}
+        {deleteUser && <DeleteUser id={idUser} setDeleteUser={setDeleteUser} />}
+        {createArticle && <CreateArticle setCreateArticle={setCreateArticle} />}
         <Link to='/'>Return to main page</Link>
     </div></Layout>);
 }

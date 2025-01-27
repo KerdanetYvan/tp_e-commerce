@@ -1,23 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import { AuthContext } from '../context/AuthContext';
 
 export default function ModifieUser({ id, setModifieUser }) {
+    const { auth, logout, login } = useContext(AuthContext);
     const [user, setUser] = useState({});
     const [modifie, setModifie] = useState(false);
-    const [modifiedUser, setModifiedUser] = useState(user);
+    const [modifiedUser, setModifiedUser] = useState({});
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
                 const { data } = await axios.get(`http://localhost:8000/api/user/get/${id}`);
                 setUser(data);
+                
             } catch(error) {
                 console.log(error);
             };
         };
         fetchUser();
-        setModifiedUser(user);
-    }, [id, user]);
+    }, [id, logout]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -25,20 +27,14 @@ export default function ModifieUser({ id, setModifieUser }) {
     };
 
     const handleSubmit = async (event) => {
-        event.preventDefault();
         try {
-            // On ajoute le token dans le header de la requête
-            const config = {
-                withCredentials: true,
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem('token')}`,
-                    'Content-Type': 'application/json',
-                }
-            };
-
-            const response = await axios.put(`http://localhost:8000/api/user/update/${user._id}`, modifiedUser, config);
-            console.log(response.data);
+            const response = await axios.put(`http://localhost:8000/api/user/update/${id}`, modifiedUser);
+            console.log(response);
             setModifie(false);
+            if(auth.id === id){
+                logout();
+                login(modifiedUser);
+            }
         } catch(error) {
             console.log(error);
         };
@@ -93,6 +89,7 @@ export default function ModifieUser({ id, setModifieUser }) {
                         <select
                             name='role'
                             id='role'
+                            placeholder={user.role}
                             onChange={handleChange}
                             disabled={!modifie}
                         >
