@@ -4,29 +4,40 @@ import axios from 'axios';
 export default function ModifieUser({ id, setModifieUser }) {
     const [user, setUser] = useState({});
     const [modifie, setModifie] = useState(false);
-    const [modifiedUser, setModifiedUser] = useState({ isActive: true });
+    const [modifiedUser, setModifiedUser] = useState(user);
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const response = await axios.get(`http://localhost:8000/api/user/get/${id}`);
-                const data = await response.data;
+                const { data } = await axios.get(`http://localhost:8000/api/user/get/${id}`);
                 setUser(data);
             } catch(error) {
                 console.log(error);
             };
         };
         fetchUser();
-    }, [id]);
+        setModifiedUser(user);
+    }, [id, user]);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
         setModifiedUser(user => ({...user, [name]: value}));
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         try {
-            await axios.put(`http://localhost:8000/api/user/update/${id}`, modifiedUser);
+            // On ajoute le token dans le header de la requête
+            const config = {
+                withCredentials: true,
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                    'Content-Type': 'application/json',
+                }
+            };
+
+            const response = await axios.put(`http://localhost:8000/api/user/update/${user._id}`, modifiedUser, config);
+            console.log(response.data);
             setModifie(false);
         } catch(error) {
             console.log(error);

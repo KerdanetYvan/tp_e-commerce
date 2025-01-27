@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
+import NavUser from './NavUser';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,10 +41,7 @@ export default function Header() {
         <div className="logo">
           <Link to="/"><img src="../img/logo.png" alt="Logo" /></Link>
         </div>
-        <div className="actions">
-          <Link to="/cart" className="icon">🛒</Link>
-          <Link to="/connexion" className="icon">🔑</Link>
-        </div>
+        <NavUser />
       </div>
     </header>
   );

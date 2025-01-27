@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
+import Layout from '../components/Layout';
 
 export default function Verify() {
     const [response, setResponse] = useState('Error verifying your account, please check your email');
@@ -19,11 +20,11 @@ export default function Verify() {
         verifyUser();
     }, [token]);
 
-    return (<div className='verify'>
+    return (<Layout><div className='verify'>
         <div className='containerVe'>
             <h1>Verification Page</h1>
             <p>{response}</p>
             <Link to='/' className='button'>Return to main page</Link>
         </div>
-    </div>)
+    </div></Layout>);
 }

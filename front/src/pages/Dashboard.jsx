@@ -4,6 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import CreateUser from '../components/CreateUser';
 import ModifieUser from '../components/ModifieUser';
+import Layout from '../components/Layout';
 
 export default function Dashboard() {
     const { auth } = useContext(AuthContext);
@@ -19,7 +20,9 @@ export default function Dashboard() {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/user/get');
+                const response = await axios.get('http://localhost:8000/api/user/get', {
+                    withCredentials: true
+                });
                 const data = await response.data;
                 setUsers(data);
             } catch(error) {
@@ -30,7 +33,9 @@ export default function Dashboard() {
 
         const fetchArticles = async () => {
             try {
-                const response = await axios.get('http://localhost:8000/api/article/all');
+                const response = await axios.get('http://localhost:8000/api/article/all', {
+                    withCredentials: true
+                });
                 const data = await response.data;
                 setArticles(data);
             } catch(error) {
@@ -60,10 +65,10 @@ export default function Dashboard() {
                 </thead>
                 <tbody>
                     {users.map(user => (
-                    <tr key={user._id} sytle={{ backgroundColor: user.isVerified ? 'white' : 'lightgray' }}>
+                    <tr key={user._id}>
                         <td><img src={user.avatar} alt='avatar' className='img' /></td>
-                        <td>{user.prenom}</td>
-                        <td>{user.email}</td>
+                        <td>{user.prenom}{!user.isActive && '😴'}</td>
+                        <td style={{ color: user.isVerified ? 'black' : 'grey' }}>{!user.isVerified && '❔ '}{user.email}</td>
                         <td style={{ fontWeight: user.role === 'admin' ? 'bold' : user.role === 'superAdmin' ? 'bold' : 'normal', color: user.role === 'admin' ? 'red' : user.role === 'superAdmin' ? 'purple' : 'black' }}>
                         {user.role}
                         </td>
@@ -102,21 +107,30 @@ export default function Dashboard() {
                         <th>Image</th>
                         <th>Titre</th>
                         <th>Description</th>
+                        <th>Brand</th>
                         <th>Prix</th>
-                        <th>Créé le</th>
-                        <th>Modifié le</th>
+                        <th>Category</th>
+                        <th>Nb Stock</th>
+                        <th>Nb avis</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {articles.map(article => (
-                        <tr key={article._id}>
-                            <td><img src={article.image} alt='article' /></td>
-                            <td>{article.titre}</td>
-                            <td>{article.description}</td>
-                            <td>{article.prix}</td>
-                            <td>{article.createdAt}</td>
-                            <td>{article.updatedAt}</td>
-                        </tr>
+                    <tr key={article._id}>
+                        <td><img src={article.picture[0]} alt='article' className='img' /></td>
+                        <td>{article.name}</td>
+                        <td>{article.content.length > 50 ? `${article.content.substring(0, 50)}...` : article.content}</td>
+                        <td>{article.brand}</td>
+                        <td>{article.price}</td>
+                        <td>{article.category}</td>
+                        <td>{article.stock}</td>
+                        <td>{article.avis.length > 0 ? article.avis.length : 0}</td>
+                        <td>
+                            <button>Informations</button>
+                            <button>Supprimer</button>
+                        </td>
+                    </tr>
                     ))}
                 </tbody>
             </table>
@@ -131,22 +145,22 @@ export default function Dashboard() {
 
 
     if( !auth ) {
-        return <div className='non-connected'>
+        return (<Layout><div className='non-connected'>
             <div className='containerNoCo'>
                 <h1>You are not connected</h1>
                 <Link to='/connexion' className='button'>Log in</Link>
             </div>
-        </div>;
+        </div></Layout>);
     }
     if( auth && auth.role !== 'admin' && auth.role !== 'superAdmin' ) {
-        return <div className='wrong-role'>
+        return <Layout><div className='wrong-role'>
             <div className='containerWrRo'>
                 <h1>You are not authorized to access this page</h1>
                 <Link to='/' className='button'>Return to the main page</Link>
             </div>
-        </div>
+        </div></Layout>;
     }
-    return (<div className='dashboard'>
+    return (<Layout><div className='dashboard'>
         <div className='containerTitleDa'>
             <img src={auth.avatar} alt='avatar' />
             <div id='ui'>Welcome {auth.prenom}, to the <strong>Dashboard</strong></div>
@@ -163,5 +177,5 @@ export default function Dashboard() {
         {createUser && <CreateUser setCreateUser={setCreateUser} />}
         {modifieUser && <ModifieUser id={id} setModifieUser={setModifieUser} />}
         <Link to='/'>Return to main page</Link>
-    </div>);
+    </div></Layout>);
 }
